@@ -1,0 +1,39 @@
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script>
+    /* 
+    Replace server url with actual hostname/ip and port of 
+    your python server 
+    */
+    const refreshBots = bots => {
+      $( ".active-bots" ).replaceWith('<ul class="active-bots"></ul>')
+      bots.map(bot => {
+        $( ".active-bots" ).append(`<li><a href="http://${bot}">${bot}</a></li>`);
+      })
+    }
+    $(document).keydown(function(e) {
+        $( ".active-bots" ).replaceWith('<ul class="active-bots">Loading ...</ul>')
+        $.ajax({
+          type: 'POST',
+          contentType: "application/json; charset=utf-8",
+          url: "/live_bots",
+          success : function(result) {
+            refreshBots(result);
+            console.log(result);
+          },error : function(result){
+            console.log(result);
+          }
+        });
+        console.log(e.key);
+    });
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <head>
+    <title>Bot Selection Interface</title>
+  </head>
+  <body>
+    <h1>Bot Selection</h1>
+    <p>Press any key to get the current list of active bots</p>
+    <ul class="active-bots"><li><a>Placeholer IP</a></li></ul>
+  </body>
+</html>
