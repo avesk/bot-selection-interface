@@ -4,8 +4,8 @@ import requests
 import json
 
 bot_subnet = '10.0.0'
-bot_net_interval = (100, 255)
-bot_endpoint = '/is_active'
+bot_net_interval = (100, 110)
+bot_endpoint = 'is_active'
 app = Flask(__name__)
 
 @app.route("/")
@@ -18,8 +18,9 @@ def live_bots():
     for i in range(*bot_net_interval):
         bot_url = f"http://{bot_subnet}.{i}/{bot_endpoint}"
         print(bot_url)
-        r = requests.get(url = bot_url) 
+        r = requests.get(url = bot_url, verify=False, timeout=1) 
         data = r.json()
+        print(data)
         if 'yes' in data:
             active_bots += [bot_url]
     return Response(json.dumps(active_bots),  mimetype='application/json')
