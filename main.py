@@ -18,11 +18,15 @@ def live_bots():
     for i in range(*bot_net_interval):
         bot_url = f"http://{bot_subnet}.{i}/{bot_endpoint}"
         print(bot_url)
-        r = requests.get(url = bot_url, verify=False, timeout=1) 
-        data = r.json()
-        print(data)
-        if 'yes' in data:
-            active_bots += [bot_url]
+        try:
+            r = requests.get(url = bot_url, verify=False, timeout=10) 
+            data = r.json()
+            print(data)
+            if 'yes' in data:
+                active_bots += [bot_url]
+        except:
+            print(f"{bot_url} unavailable")
+            continue
     return Response(json.dumps(active_bots),  mimetype='application/json')
 
 

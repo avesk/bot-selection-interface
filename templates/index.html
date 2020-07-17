@@ -11,7 +11,7 @@
         $( ".active-bots" ).append(`<li><a href="${bot}">${bot}</a></li>`);
       })
     }
-    $(document).keydown(function(e) {
+    $(document).ready(function(e) {
         $( ".active-bots" ).replaceWith('<ul class="active-bots">Loading ...</ul>')
         $.ajax({
           type: 'POST',
@@ -33,7 +33,7 @@
   </head>
   <body>
     <h1>Bot Selection</h1>
-    <p>Press any key to get the current list of active bots</p>
+    <p>Active Bots: </p>
     <ul class="active-bots"><li><a>Placeholer IP</a></li></ul>
   </body>
 </html>
