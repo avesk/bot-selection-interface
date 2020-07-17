@@ -19,11 +19,7 @@ def live_bots():
         bot_url = "http://" + bot_subnet + "." + str(i) + "/" + bot_endpoint
         print(bot_url)
         try:
-            r = requests.get(url = bot_url, verify=False, timeout=10) 
-            data = r.json()
-            print("got response")
-            print(data)
-            if 'yes' == data:
+            if 'yes' == requests.get(url=bot_url, verify=False, timeout=10).json():
                 active_bots.append(bot_url)
         except Exception as e:
             print(e)
