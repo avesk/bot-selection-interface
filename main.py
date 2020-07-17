@@ -19,7 +19,7 @@ def live_bots():
         bot_url = "http://" + bot_subnet + "." + str(i) + "/" + bot_endpoint
         print(bot_url)
         try:
-            res = requests.get(url=bot_url, verify=False, timeout=10).json()
+            res = requests.get(url=bot_url, verify=False, timeout=1).json()
             print(res)
             if res['is_active']:
                 active_bots.append(bot_url)
