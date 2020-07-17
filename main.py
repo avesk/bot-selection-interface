@@ -18,8 +18,9 @@ def live_bots():
     for i in range(*bot_net_interval):
         bot_url = "http://" + bot_subnet + "." + str(i) + "/" + bot_endpoint
         print(bot_url)
-        res = requests.get(url=bot_url, verify=False, timeout=10).json()
         try:
+            res = requests.get(url=bot_url, verify=False, timeout=10).json()
+            print(res)
             if res['is_active']:
                 active_bots.append(bot_url)
         except Exception as e:
