@@ -24,7 +24,8 @@ def live_bots():
             print(data)
             if 'yes' in data:
                 active_bots += [bot_url]
-        except:
+        except Exception as e:
+            print(e)
             print(bot_url + " unavailable")
             continue
     return Response(json.dumps(active_bots),  mimetype='application/json')
