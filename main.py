@@ -23,8 +23,8 @@ def live_bots():
             data = r.json()
             print("got response")
             print(data)
-            if 'yes' in data:
-                active_bots += [bot_url]
+            if 'yes' == data:
+                active_bots.append(bot_url)
         except Exception as e:
             print(e)
             print(bot_url + " unavailable")
