@@ -8,7 +8,7 @@
     const refreshBots = bots => {
       $( ".active-bots" ).replaceWith('<ul class="active-bots"></ul>')
       bots.map(bot => {
-        $( ".active-bots" ).append(`<li><a href="http://${bot}">${bot}</a></li>`);
+        $( ".active-bots" ).append(`<li><a href="${bot}">${bot}</a></li>`);
       })
     }
     $(document).keydown(function(e) {
