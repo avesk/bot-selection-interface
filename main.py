@@ -21,6 +21,7 @@ def live_bots():
         try:
             r = requests.get(url = bot_url, verify=False, timeout=10) 
             data = r.json()
+            print("got response")
             print(data)
             if 'yes' in data:
                 active_bots += [bot_url]
