@@ -16,13 +16,14 @@ def homepage():
 def live_bots():
     active_bots = []
     for i in range(*bot_net_interval):
-        bot_url = "http://" + bot_subnet + "." + str(i) + "/" + bot_endpoint
+        bot_host_name = "http://" + bot_subnet + "." + str(i)
+        bot_url = bot_host_name + "/" + bot_endpoint
         print(bot_url)
         try:
             res = requests.get(url=bot_url, verify=False, timeout=1).json()
             print(res)
             if res['is_active']:
-                active_bots.append(bot_url)
+                active_bots.append(bot_host_name)
         except Exception as e:
             print(e)
             print(bot_url + " unavailable")
